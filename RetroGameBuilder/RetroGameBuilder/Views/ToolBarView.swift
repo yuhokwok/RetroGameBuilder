@@ -9,14 +9,15 @@ import SwiftUI
 
 struct ToolBarView : View {
 
-    @State private var selectedIndex = 0
-    @State private var selectedIndex2 = 0
-    @State private var searchText = ""
+    
+    @Binding var editorState : EditorState
+
+    @State var searchText = ""
     
     var body: some View {
         HStack {
             
-            Picker(selection: $selectedIndex, content: {
+            Picker(selection: $editorState.editorIndex, content: {
                 Text("Game World").tag(0)
                 Text("Sprites").tag(1)
                 Text("Backgrounds").tag(2)
@@ -34,7 +35,7 @@ struct ToolBarView : View {
             }
             
             
-            Picker(selection: $selectedIndex2, content: {
+            Picker(selection: $editorState.zoomIndex, content: {
                 Text("25%").tag(0)
                 Text("50%").tag(1)
                 Text("75%").tag(2)
@@ -76,12 +77,13 @@ struct ToolBarView : View {
             .buttonStyle(.bordered)
             .padding(5)
             .padding([.leading, .trailing])
-        }
+        }.padding()
     }
 }
 
 struct ToolBarView_Preview : PreviewProvider {
+    @State static var editorState = EditorState()
     static var previews: some View {
-        return ToolBarView()
+        return ToolBarView(editorState: $editorState )
     }
 }

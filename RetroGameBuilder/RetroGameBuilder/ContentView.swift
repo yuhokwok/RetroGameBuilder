@@ -10,67 +10,80 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var columnVisibility =
-        NavigationSplitViewVisibility.doubleColumn
+    NavigationSplitViewVisibility.doubleColumn
     
-    @State var project = RGBProject()
+    @State var project = Project.sampleProject
+    @State var editorState = EditorState()
+    
+    @State private var offset = CGSize(width: 50, height: 50)
+    
     
     
     var body: some View {
         
-        NavigationSplitView(columnVisibility: $columnVisibility, sidebar: {
-            SideBarView(scenes: $project.scenes)
-                .toolbar {
-                    ToolbarItem(placement:. navigationBarLeading) {
-                        Button(action: {
-                            withAnimation {
-                                project.scenes.append(RGBScene())
-                            }
-                        }, label: {
-                            Image(systemName: "plus.app")
-                        })
-                    }
+        VStack {
+            ToolBarView(editorState: $editorState)
+            HStack {
+   
+                switch editorState.editorIndex {
+                case 0:
+                    GameWorldEditorView(project: $project).padding(0)
+                case 5:
+                    DialogueEditorView()
+                default:
+                    Text("Editor: \(editorState.editorIndex)")
                 }
-        }, detail: {
-            VStack {
                 
-                HStack {
-                    
-                    
-                    HStack {
-                        EditorView()
-                    }.frame(
-                        minWidth: 0,
-                        maxWidth: .infinity,
-                        minHeight: 0,
-                        maxHeight: .infinity,
-                        alignment: .topLeading
-                      )
-                    
-                    HStack {
-                        InspectorView()
-                    }.frame(
-                        minWidth: 0,
-                        maxWidth: 200,
-                        minHeight: 0,
-                        maxHeight: .infinity,
-                        alignment: .topLeading
-                      )
-                    .background()
-                    
-                }.frame(
-                    minWidth: 0,
-                    maxWidth: .infinity,
-                    minHeight: 0,
-                    maxHeight: .infinity,
-                    alignment: .topLeading
-                  )
-                  
-            }.toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    ToolBarView()
-                }
-            }
-        })
+            }.frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                minHeight: 0,
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
+        }
+//
+//        NavigationSplitView(columnVisibility: $columnVisibility, sidebar: {
+//            SideBarView(project: $project)
+//                .toolbar {
+//                    ToolbarItem(placement:. navigationBarLeading) {
+//                        Button(action: {
+//                            withAnimation {
+//                                //project.scenes.append($project)
+//                            }
+//                        }, label: {
+//                            Image(systemName: "plus.app")
+//                        })
+//                    }
+//                }
+//        }, detail: {
+//            VStack {
+//
+//                HStack {
+//
+//                    switch editorState.editorIndex {
+//                    case 0:
+//                        GameWorldEditorView(project: $project).padding(0)
+//                    case 5:
+//                        DialogueEditorView()
+//                    default:
+//                        Text("Editor: \(editorState.editorIndex)")
+//                    }
+//
+//                }.frame(
+//                    minWidth: 0,
+//                    maxWidth: .infinity,
+//                    minHeight: 0,
+//                    maxHeight: .infinity,
+//                    alignment: .topLeading
+//                )
+//
+//            }.toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    ToolBarView(editorState: $editorState)
+//                }
+//            }
+//        })
     }
 }
 

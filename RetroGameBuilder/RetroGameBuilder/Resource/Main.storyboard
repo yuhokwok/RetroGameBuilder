@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Scene Editor View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SceneEditor" id="Y6W-OH-hqX" customClass="SceneEditorViewController" customModule="RetroGameBuilder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" minimumZoomScale="0.25" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="hRI-1L-0HR">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ENL-cE-XGw">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hRI-1L-0HR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="194-wC-kx4"/>
+                            <constraint firstAttribute="bottom" secondItem="hRI-1L-0HR" secondAttribute="bottom" id="4Nl-FQ-o1M"/>
+                            <constraint firstItem="hRI-1L-0HR" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NgD-3J-TlD"/>
+                            <constraint firstItem="hRI-1L-0HR" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="dkh-Xe-0no"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="editorContent" destination="ENL-cE-XGw" id="NuZ-0o-Kmv"/>
+                        <outlet property="editorScrollView" destination="hRI-1L-0HR" id="xN0-WO-Ojh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-258.3984375" y="-7.0278184480234254"/>
+        </scene>
+    </scenes>
+</document>

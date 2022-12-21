@@ -1,5 +1,5 @@
 //
-//  InspectorView.swift
+//  ScenesInspectorView.swift
 //  RetroGameBuilder
 //
 //  Created by Yu Ho Kwok on 16/11/2022.
@@ -7,11 +7,15 @@
 
 import SwiftUI
 
-struct InspectorView : View {
+struct ScenesInspectorView : View {
     
 
+    @State var showingPopover = false
+    
     @State var isEnable = true
     @State var input : String = ""
+    
+    @State var value : Int = 0
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -41,16 +45,29 @@ struct InspectorView : View {
             TextField("hihi", text: $input).textFieldStyle(.roundedBorder)
                 .font(.footnote)
             
+            
             Text("Direction")
                 .font(.footnote)
             TextField("hihi", text: $input).textFieldStyle(.roundedBorder)
                 .font(.footnote)
-        }.padding()
+            
+            
+            Button("Show Menu") {
+                        showingPopover = true
+                    }
+                    .popover(isPresented: $showingPopover) {
+                        Text("Your content here")
+                            .font(.headline)
+                            .padding()
+                    }
+        }
+        .padding()
+        
     }
 }
 
 struct InpsectorView_Preview : PreviewProvider {
     static var previews: some View {
-        InspectorView()
+        ScenesInspectorView()
     }
 }

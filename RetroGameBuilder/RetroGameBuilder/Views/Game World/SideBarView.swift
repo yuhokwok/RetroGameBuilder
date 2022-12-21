@@ -9,11 +9,9 @@ import SwiftUI
 
 struct SideBarView : View {
     
-    @Binding var scenes : [RGBScene]
-    @State var scenes1 : [RGBScene] = [RGBScene(), RGBScene()]
-    @State var scripts = ["script1" , "script2"]
-    @State var variables = ["variable1" , "variable2"]
+    @Binding var project : Project
     
+
     var body: some View {
 
         VStack {
@@ -26,7 +24,7 @@ struct SideBarView : View {
                         
                         switch i {
                         case 0 :
-                            ForEach( scenes1 ) {
+                            ForEach( project.scenes ) {
                                 scene in
                                 
                                 DisclosureGroup {
@@ -46,14 +44,14 @@ struct SideBarView : View {
                                 }
                             }
                         case 1:
-                            ForEach( scripts, id:\.self ){
+                            ForEach( project.scripts ){
                                 script in
-                                Text(script)
+                                Text(script.name)
                             }
                         default:
-                            ForEach( variables, id:\.self ){
+                            ForEach( project.variables ){
                                 variable in
-                                Text(variable)
+                                Text(variable.name)
                             }
                         }
                         
@@ -61,11 +59,20 @@ struct SideBarView : View {
                     } label: {
                         switch i {
                         case 0:
-                            Text("Scene")
+                            HStack {
+                                Image(systemName: "rectangle.on.rectangle")
+                                Text("Scene")
+                            }
                         case 1:
-                            Text("Script")
+                            HStack {
+                                Image(systemName: "applescript")
+                                Text("Script")
+                            }
                         default:
-                            Text("Variable")
+                            HStack {
+                                Image(systemName: "x.squareroot")
+                                Text("Variable")
+                            }
                         }
                     }
                 }
